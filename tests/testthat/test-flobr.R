@@ -6,12 +6,21 @@ test_that("flob_old", {
                "serialized element of flob_old must inherit from class exint")
   expect_identical(check_flob(flob_old, old = TRUE), flob_old)
   expect_identical(flob_ext(flob_old), "pdf")
-  file <- tempfile(fileext = ".pdf")
-  expect_identical(unflob(flob_old, file), file)
-  expect_error(unflob(flob_old, tempfile(fileext = ".pdf1")), "path extension must match 'pdf'")
+  expect_identical(flob_name(flob_old), "file")
+  expect_identical(unflob(flob_old, tempdir()),
+                   file.path(tempdir(), paste("file", "pdf", sep = ".")))
 })
 
-test_that("package", {
+test_that("flob_noname", {
+  expect_true(is_flob(flob_noname))
+  expect_identical(check_flob(flob_noname), flob_noname)
+  expect_identical(flob_ext(flob_noname), "pdf")
+  expect_identical(flob_name(flob_noname), "file")
+  expect_identical(unflob(flob_old, tempdir()),
+                   file.path(tempdir(), paste("file", "pdf", sep = ".")))
+})
+
+test_that("package with pdf", {
 
   path <- system.file("extdata", "flobr.pdf", package = "flobr", mustWork = TRUE)
 
@@ -22,10 +31,19 @@ test_that("package", {
   check_flob(flob)
   expect_identical(names(flob), path)
   expect_identical(flob_ext(flob), "pdf")
+  expect_identical(flob_name(flob), "flobr")
 
-  new_path <- unflob(flob, tempfile(fileext = ".pdf"))
-  expect_equivalent(flob(new_path), flob)
-  expect_error(unflob(flob, tempfile(fileext = ".pdf1")), "path extension must match 'pdf'")
-  file <- tempfile()
-  expect_identical(unflob(flob, file), paste0(file, ".pdf"))
+  expect_identical(unflob(flob, tempdir()),
+                   file.path(tempdir(), paste("flobr", "pdf", sep = ".")))
+
+  expect_identical(unflob(flob, tempdir(), "file2"),
+                   file.path(tempdir(), paste("file2", "pdf", sep = ".")))
+
+  expect_identical(unflob(flob, tempdir(), "file2", "csv"),
+                   file.path(tempdir(), paste("file2", "csv", sep = ".")))
+
+  flob2 <- flob(file.path(tempdir(), paste("flobr", "pdf", sep = ".")))
+  expect_identical(flob_ext(flob2), flob_ext(flob))
+  expect_identical(flob_name(flob2), flob_name(flob))
+  expect_equivalent(flob2, flob)
 })

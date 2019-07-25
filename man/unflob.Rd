@@ -4,12 +4,18 @@
 \alias{unflob}
 \title{Unflob to File}
 \usage{
-unflob(flob, path)
+unflob(flob, dir = ".", name = "", ext = "")
 }
 \arguments{
 \item{flob}{The \code{\link{flob}} to save to file.}
 
-\item{path}{A string of the path to the new file.}
+\item{dir}{A string of the path to the directory to save the file in.}
+
+\item{name}{A string of the name (without the extension) for the file.
+If "" (the default) then the original file name is used.}
+
+\item{ext}{A string of the extension for the file.
+If "" (the default) then the original extension is used.}
 }
 \value{
 An invisible string of the path to the saved file.
@@ -18,9 +24,14 @@ An invisible string of the path to the saved file.
 Converts a \code{\link{flob}} back to its original file format.
 }
 \details{
-If path does not include an extension then it is added automatically.
-If path does include an extension and then it must match the flob's extension.
+If path ends with a file separator then the name and extension of the flob is added.
+If the flob is an older flob that was not saved with a name then it is named 'file'.
+
+If path ends with a file name without an extension then the extension of the flob
+is automatically added.
+Alternatively if path also includes an extension
+then it must match the flob's extension.
 }
 \examples{
-unflob(flob_obj, tempfile())
+unflob(flob_obj, tempdir())
 }
