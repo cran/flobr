@@ -1,3 +1,8 @@
+# flobr 0.2.1
+
+- Replace dependency on checkr by dependency on chk.
+- Errors now in tidyverse style.
+
 # flobr 0.2.0
 
 By default flobs now include the original file name with the extension. 

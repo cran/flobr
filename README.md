@@ -6,18 +6,15 @@
 <!-- badges: start -->
 
 [![Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis build
-status](https://travis-ci.org/poissonconsulting/flobr.svg?branch=master)](https://travis-ci.org/poissonconsulting/flobr)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/flobr?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/flobr)
+[![R build
+status](https://github.com/poissonconsulting/flobr/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/flobr/actions)
 [![Coverage
 status](https://codecov.io/gh/poissonconsulting/flobr/branch/master/graph/badge.svg)](https://codecov.io/github/poissonconsulting/flobr?branch=master)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![status](https://tinyverse.netlify.com/badge/flobr)](https://CRAN.R-project.org/package=flobr)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/flobr)](https://cran.r-project.org/package=flobr)
-![CRAN Downloads](http://cranlogs.r-pkg.org/badges/flobr)
+![CRAN Downloads](https://cranlogs.r-pkg.org/badges/flobr)
 <!-- badges: end -->
 
 ## Introduction
@@ -41,7 +38,7 @@ path <- system.file("extdata", "flobr.pdf", package = "flobr")
 flob <- flob(path)
 str(flob)
 #> List of 1
-#>  $ /Library/Frameworks/R.framework/Versions/3.6/Resources/library/flobr/extdata/flobr.pdf: raw [1:133851] 58 0a 00 00 ...
+#>  $ /Library/Frameworks/R.framework/Versions/4.0/Resources/library/flobr/extdata/flobr.pdf: raw [1:133851] 58 0a 00 00 ...
 #>  - attr(*, "class")= chr [1:2] "flob" "blob"
 flob_name(flob)
 #> [1] "flobr"
@@ -56,14 +53,13 @@ all.equal(flob, flob(file.path(tempdir(), "flobr.pdf")), check.attributes = FALS
 
 ## Installation
 
-To install the latest release version from
-[CRAN](https://cran.r-project.org)
+To install the latest release from [CRAN](https://cran.r-project.org)
 
 ``` r
 install.packages("flobr")
 ```
 
-To install the latest development version from
+To install the developmental version from
 [GitHub](https://github.com/poissonconsulting/flobr)
 
 ``` r
@@ -85,6 +81,9 @@ Please report any
 [Pull requests](https://github.com/poissonconsulting/flobr/pulls) are
 always welcome.
 
-Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/poissonconsulting/flobr/blob/master/CODE_OF_CONDUCT.md).
-By contributing, you agree to abide by its terms.
+## Code of Conduct
+
+Please note that the flobr project is released with a [Contributor Code
+of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
