@@ -29,3 +29,18 @@ vld_flob <- function(x, old = FALSE) {
   if (old) class(exint) <- "exint"
   vld_exint(exint)
 }
+
+vld_slob <- function(x) {
+  if (!(vld_s3_class(x, "blob") && vld_scalar(x) && vld_list(x))) {
+    return(FALSE)
+  }
+
+  exint <- unlist(x)
+  exint <- try(unserialize(exint), silent = TRUE)
+  if (inherits(exint, "try-error")) {
+    return(FALSE)
+  }
+
+  class(exint) <- "exint"
+  vld_exint(exint)
+}

@@ -4,7 +4,7 @@
 \alias{unflob}
 \title{Unflob to File}
 \usage{
-unflob(flob, dir = ".", name = "", ext = "")
+unflob(flob, dir = ".", name = "", ext = "", slob = FALSE, check = TRUE)
 }
 \arguments{
 \item{flob}{The \code{\link[=flob]{flob()}} to save to file.}
@@ -16,6 +16,11 @@ If "" (the default) then the original file name is used.}
 
 \item{ext}{A string of the extension for the file.
 If "" (the default) then the original extension is used.}
+
+\item{slob}{A logical scalar specifying whether to process slobs (serialized blobs) instead of flobs.
+If NA, either will be accepted, but slobs require that ext and name be provided.}
+
+\item{check}{A flag indicating whether to run comprehensive checks on user input.}
 }
 \value{
 An invisible string of the path to the saved file.

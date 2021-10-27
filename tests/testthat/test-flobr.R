@@ -1,5 +1,3 @@
-context("flobr")
-
 test_that("flob_old", {
   expect_true(is_flob(flob_old))
   expect_error(
@@ -74,3 +72,72 @@ test_that("package with pdf", {
   expect_identical(flob_name(flob2), flob_name(flob))
   expect_equivalent(flob2, flob)
 })
+
+test_that("slob arg works", {
+  path <- system.file("extdata", "flobr.pdf",
+                      package = "flobr",
+                      mustWork = TRUE
+  )
+
+  flob <- flobr::flob(path)
+  not_flob <- "asd"
+
+  expect_error(
+    unflob(slob_obj, tempdir(), slob = FALSE),
+    "`flob` must inherit from S3 class 'flob'.",
+    class = "chk_error"
+  )
+  expect_error(
+    unflob(slob_obj, tempdir(), slob = TRUE),
+    "`name` and `ext` must be provided for slob objects."
+  )
+  expect_error(
+    unflob(flob, tempdir(), slob = TRUE),
+    "`name` and `ext` must be provided for slob objects."
+  )
+  expect_error(
+    unflob(not_flob, tempdir(), slob = NA),
+    "At least one of the following conditions must be met:\n* `flob` must inherit from S3 class 'blob'.\n* `flob` must inherit from S3 class 'flob'.",
+    fixed = TRUE,
+    class = "chk_error"
+  )
+  expect_identical(
+    unflob(slob_obj, tempdir(), slob = TRUE, name = "file_name", ext = "pdf"),
+    file.path(tempdir(), paste("file_name", "pdf", sep = "."))
+  )
+  expect_identical(
+    unflob(flob, tempdir(), slob = TRUE, name = "file_name", ext = "pdf"),
+    file.path(tempdir(), paste("file_name", "pdf", sep = "."))
+  )
+  expect_identical(
+    unflob(flob, tempdir(), slob = NA, name = "file_name", ext = "pdf"),
+    file.path(tempdir(), paste("file_name", "pdf", sep = "."))
+  )
+  expect_identical(
+    unflob(slob_obj, tempdir(), slob = NA, name = "file_name", ext = "pdf"),
+    file.path(tempdir(), paste("file_name", "pdf", sep = "."))
+  )
+
+  # do we like this behavior? semantic error if no check
+  expect_identical(
+    unflob(slob_obj, tempdir(), slob = NA, name = "", ext = "", check = FALSE),
+    file.path(tempdir(), paste("file", "name", sep = "."))
+  )
+
+  expect_identical(
+    unflob(flob_obj, tempdir(), slob = NA, name = "", ext = "", check = FALSE),
+    file.path(tempdir(), paste("flobr", "pdf", sep = "."))
+  )
+
+  expect_error(
+    unflob(123, tempdir(), slob = NA, name = "", ext = "", check = FALSE),
+    "connection' must be a connection"
+  )
+
+  expect_error(
+    unflob("123", tempdir(), slob = NA, name = "", ext = "", check = FALSE),
+    "character vectors are no longer accepted by unserialize()"
+  )
+
+})
+

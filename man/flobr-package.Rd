@@ -8,12 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Converts files to and from flobs. 
-    A flob is a file that was 
-    read into binary in integer-mode as little endian, 
-    saved as the single element of a named list (where the name is the name 
-    of the original file) and then serialized before being coerced into a blob.
-    Flobs are useful for writing and reading files to and from databases.
+Converts files to and from flobs. A flob is a file that was read into binary in integer-mode as little endian, saved as the single element of a named list (where the name is the name of the original file) and then serialized before being coerced into a blob. Flobs are useful for writing and reading files to and from databases.
 }
 \seealso{
 Useful links:
@@ -25,6 +20,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID})
+
+Authors:
+\itemize{
+  \item Evan Amies-Galonski \email{evan@poissonconsulting.ca} (\href{https://orcid.org/0000-0003-1096-2089}{ORCID})
+}
 
 Other contributors:
 \itemize{

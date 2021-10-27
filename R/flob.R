@@ -62,28 +62,42 @@ flob <- function(path, name = "") {
 #' If "" (the default) then the original file name is used.
 #' @param ext A string of the extension for the file.
 #' If "" (the default) then the original extension is used.
+#' @param slob A logical scalar specifying whether to process slobs (serialized blobs) instead of flobs.
+#' If NA, either will be accepted, but slobs require that ext and name be provided.
+#' @param check A flag indicating whether to run comprehensive checks on user input.
 #' @return An invisible string of the path to the saved file.
 #' @export
 #' @examples
 #' unflob(flob_obj, tempdir())
-unflob <- function(flob, dir = ".", name = "", ext = "") {
-  chk_flob(flob, old = TRUE)
+unflob <- function(flob, dir = ".", name = "", ext = "", slob = FALSE, check = TRUE) {
+
   chk_string(dir)
   chk_string(name)
   chk_string(ext)
+  chk_lgl(slob)
+  chk_flag(check)
+
+  if(check){
+    if (vld_false(slob)){
+      chk_flob(flob, old = TRUE)
+    } else if (vld_true(slob)){
+      chk_slob(flob)
+      if (identical(name, "") || identical(ext, "")) err("`name` and `ext` must be provided for slob objects.")
+    } else if (!vld_flob(flob)) {
+      chkor(chk_slob(flob), chk_flob(flob, old = TRUE))
+      if (identical(name, "") || identical(ext, "")) err("`name` and `ext` must be provided for slob objects.")
+    }
+  }
 
   flob <- unlist(flob)
   flob <- unserialize(flob)
   names <- names(flob)
-
   flob <- unlist(flob)
 
   if (identical(name, "")) name <- file(names)
   if (identical(ext, "")) ext <- ext(names)
 
   path <- file.path(dir, paste(name, ext, sep = "."))
-
   writeBin(flob, con = path, endian = "little")
-
   invisible(path)
 }

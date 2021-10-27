@@ -5,9 +5,9 @@
 
 <!-- badges: start -->
 
-[![Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![R build
-status](https://github.com/poissonconsulting/flobr/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/flobr/actions)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/poissonconsulting/flobr/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/flobr/actions)
 [![Coverage
 status](https://codecov.io/gh/poissonconsulting/flobr/branch/master/graph/badge.svg)](https://codecov.io/github/poissonconsulting/flobr?branch=master)
 [![License:
@@ -38,7 +38,7 @@ path <- system.file("extdata", "flobr.pdf", package = "flobr")
 flob <- flob(path)
 str(flob)
 #> List of 1
-#>  $ /Library/Frameworks/R.framework/Versions/4.0/Resources/library/flobr/extdata/flobr.pdf: raw [1:133851] 58 0a 00 00 ...
+#>  $ /Library/Frameworks/R.framework/Versions/4.1/Resources/library/flobr/extdata/flobr.pdf: raw [1:133851] 58 0a 00 00 ...
 #>  - attr(*, "class")= chr [1:2] "flob" "blob"
 flob_name(flob)
 #> [1] "flobr"
@@ -71,7 +71,7 @@ remotes::install_github("poissonconsulting/flobr")
 
 The [blob](https://github.com/tidyverse/blob) package.
 
-The hex was designed by [The Forest](http://www.theforest.ca).
+The hex was designed by [The Forest](https://www.theforest.ca/).
 
 ## Contribution
 

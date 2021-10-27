@@ -1,3 +1,19 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# flobr 0.2.2
+
+- Clarify back-compatibility with slobs (serialized blobs) instead of blobs.
+
+
+# flobr 0.2.1.9001
+
+- Added `chk_blob()` and `vld_blob()`.
+- `unflob()` now accommodates blobs if name and ext provided and has a check argument to switch off checking.
+
+# flobr 0.2.1.9000
+
+- Internal changes only.
+
 # flobr 0.2.1
 
 - Replace dependency on checkr by dependency on chk.
